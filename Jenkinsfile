@@ -1,27 +1,27 @@
 pipeline {
  environment {
- imagename = “adithyak21/jenkins-docker”
- registryCredential = ‘adithya-docckerhub’
+ imagename = “emjay888/jenkins-docker”
+ registryCredential = ‘emjay888’
  dockerImage = ‘’
  }
  agent any
  stages {
  stage(‘Cloning Git’) {
  steps {
- git([url: ‘https://github.com/abiola911/simple-docker.git', branch: ‘main’])
+ git([url: ‘https://github.com/adithyak21/simple-docker.git', branch: ‘main’])
  }
  }
  stage(‘Building image’) {
  steps{
  script {
- dockerImage = docker.build simpledocker
+ dockerImage = docker.build imagename
  }
  }
  }
  stage(‘Running image’) {
  steps{
  script {
- sh “docker run emjay888/simpledocker:latest”
+ sh “docker run ${imagename}:latest”
  }
  }
  }
